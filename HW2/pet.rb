@@ -1,3 +1,5 @@
+puts 'Choose a name:'
+
 class Pet
   attr_accessor :name, :mood, :starvation, :asleep, :angry, :wish_to_walk, :stamina
 
@@ -124,108 +126,114 @@ class Pet
 
 private
 
-  def passage_of_time
-    #if @mood >= 10
-      #@mood = 10
-      #puts 'Your pet is in a very good mood:)'
-    #end
-
-    #if @mood <= 0
-      #@angry = 10
-      #puts 'Your pet is in a very bad mood and he becomes angry.'
-    #end
-
-    #if @food_in_stomach >= 10
-      #@food_in_stomach = 10
-      #@asleep = 10
-      #@mood += rand(2..5)
-      #puts 'Your pet is well and he wants to sleep;)'
-    #end
-
-    #if @food_in_stomach <= 0
-      #puts 'Your pet is starving and dies.'
-      #puts 'May the Force be with him.'
-      #exit
-    #end
-
-    #if @asleep >= 10
-      #@asleep = 10
-      #@stamina -= rand(1..10)
-      #@wish_to_walk = 0
-      #puts 'Your pet is to tired. It doesn`t want to go anywhere.'
-      #puts 'Put him to sleep.'
-    #end
-
-    #if @asleep <= 0
-      #@wish_to_walk += rand(4..7)
-      #puts 'Your pet is full of energy.'
-      #puts 'He really needs a walk and a wonderful play))'
-    #end
-
-    #if @angry >= 10
-      #@angry = 10
-      #@mood -= rand(8..10)
-      #puts 'The pet is furious. He barks loudly and he starts throwing on you.'
-      #exit
-    #end
-
-    #if @angry <= 0
-      #@mood += rand(1..3)
-      #puts 'The is peaceful and satisfied with life.)'
-    #end
-
-    #if @wish_to_walk >= 10
-      #@wish_to_walk = 10
-      #@mood += rand(1..4)
-      #puts 'He is running around the house, jumping and making.'
-      #puts 'Take him to a walk)'
-    #end
-
-    #if @wish_to_walk <= 0
-      #@mood -= rand(1..5)
-      #puts 'He doesn`t want to go for a walk. Your pet dissatisfied with the life('
-    #end
-
-    #if @stamina >= 10
-      #@stamina = 10
-    #end
-
-    #if @stamina <= 0
-      #@asleep += rand(7..10)
-      #@mood -= rand(7..9)
-      #@wish_to_walk -= rand(6..9)
-      #@food_in_stomach -= rand(5..7)
-    #end
-  end
-
-  puts 'Enter your name. please.'
-  name = gets.chomp
-  if name.length < 3
+  def check
+      puts 'Enter your name. please.'
+    name = gets.chomp
     while name.length < 3
       p 'Enter the name which will be more than 3 symbols'
-    name = gets.chomp
+      name = gets.chomp
     end
   end
+
+  def action_watcher
+    case command
+      when '1' then pet.feed
+      when 'put_to_sleep' then pet.put_to_sleep
+      when 'to_play' then pet.to_play
+      when 'to_walk' then pet.to_walk
+      when 'command_aport' then pet.command_aport
+      when 'voice' then pet.voice
+      when 'sit_down' then pet.sit_down
+      when 'lay-down' then pet.lay_down
+      when 'take_the_toy' then pet.take_the_toy
+      when 'hold_the_toy' then pet.hold_the_toy
+      when 'information' then pet.information
+      when 'check' then pet.check
+      when 'help' then pet.help
+    end
   end
+
+  def passage_of_time
+    if @mood >= 10
+      @mood = 10
+      puts 'Your pet is in a very good mood:)'
+    end
+
+    if @mood <= 0
+      @angry = 10
+      puts 'Your pet is in a very bad mood and he becomes angry.'
+    end
+
+    if @food_in_stomach >= 10
+      @food_in_stomach = 10
+      @asleep = 10
+      @mood += rand(2..5)
+      puts 'Your pet is well and he wants to sleep;)'
+    end
+
+    if @food_in_stomach <= 0
+      puts 'Your pet is starving and dies.'
+      puts 'May the Force be with him.'
+      exit
+    end
+
+    if @asleep >= 10
+      @asleep = 10
+      @stamina -= rand(1..10)
+      @wish_to_walk = 0
+      puts 'Your pet is to tired. It doesn`t want to go anywhere.'
+      puts 'Put him to sleep.'
+    end
+
+    if @asleep <= 0
+      @wish_to_walk += rand(4..7)
+      puts 'Your pet is full of energy.'
+      puts 'He really needs a walk and a wonderful play))'
+    end
+
+    if @angry >= 10
+      @angry = 10
+      @mood -= rand(8..10)
+      puts 'The pet is furious. He barks loudly and he starts throwing on you.'
+      exit
+    end
+
+    if @angry <= 0
+      @mood += rand(1..3)
+      puts 'The is peaceful and satisfied with life.)'
+    end
+
+    if @wish_to_walk >= 10
+      @wish_to_walk = 10
+      @mood += rand(1..4)
+      puts 'He is running around the house, jumping and making.'
+      puts 'Take him to a walk)'
+    end
+
+    if @wish_to_walk <= 0
+      @mood -= rand(1..5)
+      puts 'He doesn`t want to go for a walk. Your pet dissatisfied with the life('
+    end
+
+    if @stamina >= 10
+      @stamina = 10
+    end
+
+    if @stamina <= 0
+      @asleep += rand(7..10)
+      @mood -= rand(7..9)
+      @wish_to_walk -= rand(6..9)
+      @food_in_stomach -= rand(5..7)
+    end
+  end
+
+  name = gets.chomp
 
   pet = Pet.new(name)
   pet.help
   command = nil
   until command == 'exit'
     command = gets.chomp
-  case command
-  when 'feed' then pet.feed
-  when 'put_to_sleep' then pet.put_to_sleep
-  when 'to_play' then pet.to_play
-  when 'to_walk' then pet.to_walk
-  when 'command_aport' then pet.command_aport
-  when 'voice' then pet.voice
-  when 'sit_down' then pet.sit_down
-  when 'lay-down' then pet.lay_down
-  when 'take_the_toy' then pet.take_the_toy
-  when 'hold_the_toy' then pet.hold_the_toy
-  when 'information' then pet.information
-  when 'check' then pet.check
-  when 'help' then pet.help
   end
-  end
+
+end
